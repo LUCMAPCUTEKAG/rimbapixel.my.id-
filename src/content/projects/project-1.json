@@ -1,0 +1,17 @@
+{
+  "slug": "brand-identity-luxury",
+  "title_ar": "هوية بصرية فاخرة",
+  "title_en": "Luxury Brand Identity",
+  "desc_ar": "تصميم هوية بصرية متكاملة لعلامة تجارية فاخرة تتضمن الشعار، الألوان، الخطوط، وجميع التطبيقات",
+  "desc_en": "Complete brand identity design for a luxury brand including logo, colors, fonts, and all applications",
+  "year": 2025,
+  "tags": ["Branding", "Logo Design", "Identity"],
+  "category": "Branding",
+  "coverImage": "/uploads/projects/luxury-brand-cover.jpg",
+  "galleryImages": [
+    "/uploads/projects/luxury-brand-1.jpg",
+    "/uploads/projects/luxury-brand-2.jpg",
+    "/uploads/projects/luxury-brand-3.jpg"
+  ],
+  "featured": true
+}

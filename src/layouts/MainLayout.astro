@@ -1,0 +1,22 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { type Language } from '../lib/i18n';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: Language;
+}
+
+const { title, description, lang = 'ar' } = Astro.props;
+---
+
+<BaseLayout title={title} description={description} lang={lang}>
+  <Nav lang={lang} currentPath={Astro.url.pathname} />
+  <main class="pt-16 md:pt-20 min-h-screen">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>

@@ -1,0 +1,16 @@
+{
+  "slug": "book-cover-design",
+  "title_ar": "تصميم غلاف كتاب",
+  "title_en": "Book Cover Design",
+  "desc_ar": "تصميم غلاف كتاب جذاب يعكس محتوى الكتاب ويجذب القراء",
+  "desc_en": "Attractive book cover design that reflects the content and attracts readers",
+  "year": 2023,
+  "tags": ["Book Design", "Typography", "Print"],
+  "category": "Print",
+  "coverImage": "/uploads/projects/book-cover.jpg",
+  "galleryImages": [
+    "/uploads/projects/book-1.jpg",
+    "/uploads/projects/book-2.jpg"
+  ],
+  "featured": false
+}

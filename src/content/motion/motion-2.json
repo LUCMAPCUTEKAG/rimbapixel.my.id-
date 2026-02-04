@@ -1,0 +1,12 @@
+{
+  "slug": "product-promo-video",
+  "title_ar": "فيديو ترويجي للمنتج",
+  "title_en": "Product Promo Video",
+  "desc_ar": "فيديو ترويجي ديناميكي للمنتج مع موشن جرافيك جذاب وموسيقى نابضة بالحياة",
+  "desc_en": "Dynamic product promotional video with engaging motion graphics and vibrant music",
+  "year": 2024,
+  "tags": ["Product Video", "Promo", "Marketing"],
+  "posterImage": "/uploads/motion/product-promo-poster.jpg",
+  "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "featured": true
+}

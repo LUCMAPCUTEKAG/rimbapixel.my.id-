@@ -1,0 +1,16 @@
+{
+  "slug": "poster-design-concert",
+  "title_ar": "ملصق حفل موسيقي",
+  "title_en": "Concert Poster Design",
+  "desc_ar": "تصميم ملصق إبداعي لحفل موسيقي مع تأثيرات بصرية مميزة",
+  "desc_en": "Creative poster design for a music concert with distinctive visual effects",
+  "year": 2024,
+  "tags": ["Poster", "Typography", "Event"],
+  "category": "Print",
+  "coverImage": "/uploads/projects/concert-poster-cover.jpg",
+  "galleryImages": [
+    "/uploads/projects/concert-poster-1.jpg",
+    "/uploads/projects/concert-poster-2.jpg"
+  ],
+  "featured": false
+}

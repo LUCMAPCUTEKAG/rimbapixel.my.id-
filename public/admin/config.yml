@@ -1,0 +1,100 @@
+backend:
+  name: github
+  repo: LUCMAPCUTEKAG/rimbapixel.my.id-
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: ar
+
+collections:
+  - name: "projects"
+    label: "Graphic Design Projects"
+    label_singular: "Project"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Slug", name: "slug", widget: "string", required: true}
+      - {label: "Title (Arabic)", name: "title_ar", widget: "string", required: true}
+      - {label: "Title (English)", name: "title_en", widget: "string", required: true}
+      - {label: "Description (Arabic)", name: "desc_ar", widget: "text", required: true}
+      - {label: "Description (English)", name: "desc_en", widget: "text", required: true}
+      - {label: "Year", name: "year", widget: "number", value_type: "int", required: true}
+      - {label: "Tags", name: "tags", widget: "list", required: true}
+      - {label: "Category", name: "category", widget: "string", required: false}
+      - {label: "Cover Image", name: "coverImage", widget: "image", required: true}
+      - {label: "Gallery Images", name: "galleryImages", widget: "list", field: {label: "Image", name: "image", widget: "image"}, required: false}
+      - label: "Videos (Optional)"
+        name: "videos"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Video URL", name: "url", widget: "string"}
+          - {label: "Poster Image", name: "poster", widget: "image", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+
+  - name: "motion"
+    label: "Motion Graphics"
+    label_singular: "Motion"
+    folder: "src/content/motion"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - {label: "Slug", name: "slug", widget: "string", required: true}
+      - {label: "Title (Arabic)", name: "title_ar", widget: "string", required: true}
+      - {label: "Title (English)", name: "title_en", widget: "string", required: true}
+      - {label: "Description (Arabic)", name: "desc_ar", widget: "text", required: true}
+      - {label: "Description (English)", name: "desc_en", widget: "text", required: true}
+      - {label: "Year", name: "year", widget: "number", value_type: "int", required: true}
+      - {label: "Tags", name: "tags", widget: "list", required: true}
+      - {label: "Poster Image", name: "posterImage", widget: "image", required: true}
+      - {label: "Video URL (YouTube/Vimeo/Direct)", name: "videoUrl", widget: "string", required: true, hint: "YouTube, Vimeo, or direct link to video"}
+      - {label: "Local Video File (Optional)", name: "localVideo", widget: "file", required: false, hint: "Only for small videos"}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false}
+
+  - name: "about"
+    label: "About"
+    files:
+      - label: "About Information"
+        name: "info"
+        file: "src/content/about/info.json"
+        format: "json"
+        fields:
+          - {label: "About Text (Arabic)", name: "about_ar", widget: "text", required: true}
+          - {label: "About Text (English)", name: "about_en", widget: "text", required: true}
+          - {label: "Highlights (Arabic)", name: "highlights_ar", widget: "list", field: {label: "Highlight", name: "highlight", widget: "string"}}
+          - {label: "Highlights (English)", name: "highlights_en", widget: "list", field: {label: "Highlight", name: "highlight", widget: "string"}}
+          - {label: "Skills/Tools", name: "skills", widget: "list", required: false, field: {label: "Skill", name: "skill", widget: "string"}}
+
+  - name: "settings"
+    label: "Settings"
+    files:
+      - label: "Site Settings"
+        name: "site"
+        file: "src/content/settings/site.json"
+        format: "json"
+        fields:
+          - {label: "Brand Name (Arabic)", name: "brand_ar", widget: "string", required: true}
+          - {label: "Brand Name (English)", name: "brand_en", widget: "string", required: true}
+          - {label: "Your Name (Arabic)", name: "name_ar", widget: "string", required: true}
+          - {label: "Your Name (English)", name: "name_en", widget: "string", required: true}
+          - {label: "Experience (Arabic)", name: "experience_ar", widget: "string", required: true}
+          - {label: "Experience (English)", name: "experience_en", widget: "string", required: true}
+          - {label: "Location (Arabic)", name: "location_ar", widget: "string", required: true}
+          - {label: "Location (English)", name: "location_en", widget: "string", required: true}
+          - {label: "WhatsApp", name: "whatsapp", widget: "string", required: true, hint: "Include country code, e.g., +963997804468"}
+          - {label: "Telegram Username", name: "telegram", widget: "string", required: true, hint: "Username without @"}
+          - {label: "Email", name: "email", widget: "string", required: true}
+          - {label: "SEO Title (Arabic)", name: "seo_title_ar", widget: "string", required: true}
+          - {label: "SEO Title (English)", name: "seo_title_en", widget: "string", required: true}
+          - {label: "SEO Description (Arabic)", name: "seo_desc_ar", widget: "text", required: true}
+          - {label: "SEO Description (English)", name: "seo_desc_en", widget: "text", required: true}
+          - {label: "Open Graph Image", name: "og_image", widget: "image", required: false}

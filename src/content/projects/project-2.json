@@ -1,0 +1,18 @@
+{
+  "slug": "social-media-campaign",
+  "title_ar": "حملة سوشيال ميديا",
+  "title_en": "Social Media Campaign",
+  "desc_ar": "سلسلة من التصاميم الإبداعية لحملة تسويقية على وسائل التواصل الاجتماعي",
+  "desc_en": "Series of creative designs for a social media marketing campaign",
+  "year": 2024,
+  "tags": ["Social Media", "Marketing", "Digital"],
+  "category": "Digital Marketing",
+  "coverImage": "/uploads/projects/social-campaign-cover.jpg",
+  "galleryImages": [
+    "/uploads/projects/social-campaign-1.jpg",
+    "/uploads/projects/social-campaign-2.jpg",
+    "/uploads/projects/social-campaign-3.jpg",
+    "/uploads/projects/social-campaign-4.jpg"
+  ],
+  "featured": true
+}

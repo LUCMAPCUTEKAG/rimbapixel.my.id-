@@ -1,0 +1,127 @@
+---
+import { type Language, useTranslations } from '../lib/i18n';
+
+interface Props {
+  lang: Language;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const t = useTranslations(lang);
+const isRTL = lang === 'ar';
+
+const navItems = [
+  { key: 'nav.home', href: '/' },
+  { key: 'nav.graphic', href: '/graphic-design' },
+  { key: 'nav.motion', href: '/motion-graphics' },
+  { key: 'nav.about', href: '/about' },
+  { key: 'nav.contact', href: '/contact' },
+];
+
+const otherLang = lang === 'ar' ? 'en' : 'ar';
+const langSwitchPath = lang === 'ar' ? `/en${currentPath}` : currentPath.replace('/en', '');
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+  <div class="container-custom">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href={lang === 'ar' ? '/' : '/en'} class="text-2xl font-bold gradient-text">
+        {lang === 'ar' ? 'داني ديزاين' : 'Dani Design'}
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        {navItems.map(({ key, href }) => {
+          const fullHref = lang === 'ar' ? href : `/en${href}`;
+          const isActive = currentPath === fullHref || (currentPath === '/' && href === '/') || (currentPath === '/en' && href === '/');
+          return (
+            <a
+              href={fullHref}
+              class={`text-sm font-medium transition-colors hover:text-primary-600 dark:hover:text-primary-400 ${
+                isActive ? 'text-primary-600 dark:text-primary-400' : 'text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              {t(key as any)}
+            </a>
+          );
+        })}
+      </div>
+      
+      <!-- Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Theme Toggle -->
+        <button
+          data-theme-toggle
+          class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+          aria-label={t('theme.toggle')}
+        >
+          <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+          </svg>
+          <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+          </svg>
+        </button>
+        
+        <!-- Language Toggle -->
+        <a
+          href={langSwitchPath}
+          class="px-3 py-2 text-sm font-medium rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
+        >
+          {otherLang === 'ar' ? 'ع' : 'EN'}
+        </a>
+        
+        <!-- Mobile Menu Toggle -->
+        <button
+          data-mobile-menu-toggle
+          class="md:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors"
+          aria-label="Menu"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div data-mobile-menu class="hidden md:hidden border-t border-white/10">
+    <div class="container-custom py-4 space-y-2">
+      {navItems.map(({ key, href }) => {
+        const fullHref = lang === 'ar' ? href : `/en${href}`;
+        const isActive = currentPath === fullHref;
+        return (
+          <a
+            href={fullHref}
+            class={`block px-4 py-2 rounded-lg transition-colors ${
+              isActive
+                ? 'bg-primary-600 text-white'
+                : 'hover:bg-gray-200 dark:hover:bg-gray-800'
+            }`}
+          >
+            {t(key as any)}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('[data-mobile-menu-toggle]')) {
+      const menu = document.querySelector('[data-mobile-menu]');
+      menu?.classList.toggle('hidden');
+    }
+  });
+</script>
+
+<style>
+  nav {
+    backdrop-filter: blur(12px);
+  }
+</style>
