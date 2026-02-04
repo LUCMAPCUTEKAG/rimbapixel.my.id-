@@ -1,0 +1,170 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import VideoCard from '../components/VideoCard.astro';
+
+// Sample projects data (will be replaced by CMS)
+const featuredProjects = [
+  {
+    title: 'تصميم هوية بصرية',
+    titleEn: 'Brand Identity Design',
+    description: 'تصميم هوية بصرية متكاملة لشركة تقنية ناشئة',
+    descriptionEn: 'Complete brand identity design for a tech startup',
+    image: '/uploads/project1.jpg',
+    link: '#'
+  },
+  {
+    title: 'تصميم ملصق إعلاني',
+    titleEn: 'Advertising Poster',
+    description: 'ملصق إعلاني إبداعي لحملة تسويقية',
+    descriptionEn: 'Creative advertising poster for marketing campaign',
+    image: '/uploads/project2.jpg',
+    link: '#'
+  },
+  {
+    title: 'تصميم واجهة مستخدم',
+    titleEn: 'UI Design',
+    description: 'تصميم واجهة مستخدم حديثة لتطبيق موبايل',
+    descriptionEn: 'Modern UI design for mobile application',
+    image: '/uploads/project3.jpg',
+    link: '#'
+  }
+];
+
+const featuredMotion = [
+  {
+    title: 'فيديو ترويجي',
+    titleEn: 'Promotional Video',
+    description: 'فيديو موشن جرافيك ترويجي لمنتج جديد',
+    descriptionEn: 'Motion graphics promotional video for new product',
+    videoUrl: 'https://example.com/video1',
+    posterImage: '/uploads/motion1-poster.jpg'
+  }
+];
+---
+
+<Layout title="RimbaPixel Portfolio" lang="ar">
+  <Navigation />
+  
+  <main class="pt-24">
+    <!-- Hero Section -->
+    <section class="container mx-auto px-4 py-20">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 reveal animate-fade-in">
+          <span data-hero-ar>مرحباً بك في RimbaPixel</span>
+          <span data-hero-en class="hidden">Welcome to RimbaPixel</span>
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 reveal">
+          <span data-desc-ar>نقدم خدمات تصميم جرافيكي وموشن جرافيك احترافية</span>
+          <span data-desc-en class="hidden">Professional graphic design and motion graphics services</span>
+        </p>
+        <div class="flex gap-4 justify-center reveal">
+          <a
+            href="/graphic-design"
+            class="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+          >
+            <span data-btn-ar>استكشف أعمالنا</span>
+            <span data-btn-en class="hidden">Explore Our Work</span>
+          </a>
+          <a
+            href="/contact"
+            class="px-8 py-3 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-gray-800 transition-colors font-semibold"
+          >
+            <span data-btn-ar>تواصل معنا</span>
+            <span data-btn-en class="hidden">Contact Us</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Featured Projects Section -->
+    <section class="container mx-auto px-4 py-16">
+      <h2 class="text-4xl font-bold mb-12 text-center">
+        <span data-projects-ar>مشاريع مميزة</span>
+        <span data-projects-en class="hidden">Featured Projects</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredProjects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <a
+          href="/graphic-design"
+          class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+        >
+          <span data-viewall-ar>عرض جميع المشاريع</span>
+          <span data-viewall-en class="hidden">View All Projects</span>
+        </a>
+      </div>
+    </section>
+    
+    <!-- Featured Motion Graphics Section -->
+    <section class="container mx-auto px-4 py-16 bg-gray-50 dark:bg-gray-800/50">
+      <h2 class="text-4xl font-bold mb-12 text-center">
+        <span data-motion-ar>موشن جرافيك مميز</span>
+        <span data-motion-en class="hidden">Featured Motion Graphics</span>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {featuredMotion.map((video) => (
+          <VideoCard {...video} />
+        ))}
+      </div>
+      <div class="text-center mt-12">
+        <a
+          href="/motion-graphics"
+          class="inline-block px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+        >
+          <span data-viewmotion-ar>عرض جميع الفيديوهات</span>
+          <span data-viewmotion-en class="hidden">View All Videos</span>
+        </a>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  function updateHomeLanguage(lang: string) {
+    const elements = [
+      { ar: '[data-hero-ar]', en: '[data-hero-en]' },
+      { ar: '[data-desc-ar]', en: '[data-desc-en]' },
+      { ar: '[data-btn-ar]', en: '[data-btn-en]' },
+      { ar: '[data-projects-ar]', en: '[data-projects-en]' },
+      { ar: '[data-viewall-ar]', en: '[data-viewall-en]' },
+      { ar: '[data-motion-ar]', en: '[data-motion-en]' },
+      { ar: '[data-viewmotion-ar]', en: '[data-viewmotion-en]' }
+    ];
+    
+    elements.forEach(({ ar, en }) => {
+      const arEl = document.querySelector(ar);
+      const enEl = document.querySelector(en);
+      
+      if (lang === 'ar') {
+        arEl?.classList.remove('hidden');
+        enEl?.classList.add('hidden');
+      } else {
+        arEl?.classList.add('hidden');
+        enEl?.classList.remove('hidden');
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateHomeLanguage(currentLang);
+  });
+  
+  const observer = new MutationObserver(() => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateHomeLanguage(currentLang);
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
+</script>

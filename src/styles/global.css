@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+  }
+}
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .animate-fade-in,
+    .animate-slide-up,
+    .animate-float {
+      animation: none;
+      transition: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+  
+  .card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+  }
+  
+  .card-3d:hover {
+    transform: translateY(-5px) rotateX(2deg);
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .card-3d:hover {
+      transform: translateY(-2px);
+    }
+  }
+}

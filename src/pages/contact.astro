@@ -1,0 +1,223 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact - RimbaPixel" lang="ar">
+  <Navigation />
+  
+  <main class="pt-24">
+    <!-- Page Header -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-5xl font-bold mb-6 reveal">
+          <span data-title-ar>تواصل معنا</span>
+          <span data-title-en class="hidden">Contact Us</span>
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 reveal">
+          <span data-desc-ar>نحن هنا للإجابة على استفساراتك ومناقشة مشروعك القادم</span>
+          <span data-desc-en class="hidden">We're here to answer your questions and discuss your next project</span>
+        </p>
+      </div>
+    </section>
+    
+    <!-- Contact Form Section -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="max-w-2xl mx-auto">
+        <div class="reveal card-3d bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+          <form class="space-y-6" id="contact-form">
+            <div>
+              <label for="name" class="block text-sm font-medium mb-2">
+                <span data-label-name-ar>الاسم</span>
+                <span data-label-name-en class="hidden">Name</span>
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                data-placeholder-ar="أدخل اسمك"
+                data-placeholder-en="Enter your name"
+              />
+            </div>
+            
+            <div>
+              <label for="email" class="block text-sm font-medium mb-2">
+                <span data-label-email-ar>البريد الإلكتروني</span>
+                <span data-label-email-en class="hidden">Email</span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                data-placeholder-ar="أدخل بريدك الإلكتروني"
+                data-placeholder-en="Enter your email"
+              />
+            </div>
+            
+            <div>
+              <label for="subject" class="block text-sm font-medium mb-2">
+                <span data-label-subject-ar>الموضوع</span>
+                <span data-label-subject-en class="hidden">Subject</span>
+              </label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                required
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                data-placeholder-ar="موضوع الرسالة"
+                data-placeholder-en="Message subject"
+              />
+            </div>
+            
+            <div>
+              <label for="message" class="block text-sm font-medium mb-2">
+                <span data-label-message-ar>الرسالة</span>
+                <span data-label-message-en class="hidden">Message</span>
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                data-placeholder-ar="اكتب رسالتك هنا..."
+                data-placeholder-en="Write your message here..."
+              ></textarea>
+            </div>
+            
+            <button
+              type="submit"
+              class="w-full px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
+            >
+              <span data-btn-ar>إرسال الرسالة</span>
+              <span data-btn-en class="hidden">Send Message</span>
+            </button>
+          </form>
+          
+          <div id="form-message" class="mt-4 hidden"></div>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="reveal card-3d bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg text-center">
+            <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <h3 class="text-lg font-semibold mb-2">
+              <span data-email-title-ar>البريد الإلكتروني</span>
+              <span data-email-title-en class="hidden">Email</span>
+            </h3>
+            <a href="mailto:info@rimbapixel.my.id" class="text-blue-600 dark:text-blue-400 hover:underline">
+              info@rimbapixel.my.id
+            </a>
+          </div>
+          
+          <div class="reveal card-3d bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg text-center">
+            <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <h3 class="text-lg font-semibold mb-2">
+              <span data-location-title-ar>الموقع</span>
+              <span data-location-title-en class="hidden">Location</span>
+            </h3>
+            <p class="text-gray-600 dark:text-gray-300">
+              <span data-location-ar>إندونيسيا</span>
+              <span data-location-en class="hidden">Indonesia</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  function updateContactLanguage(lang: string) {
+    const selectors = [
+      '[data-title-ar]', '[data-title-en]',
+      '[data-desc-ar]', '[data-desc-en]',
+      '[data-label-name-ar]', '[data-label-name-en]',
+      '[data-label-email-ar]', '[data-label-email-en]',
+      '[data-label-subject-ar]', '[data-label-subject-en]',
+      '[data-label-message-ar]', '[data-label-message-en]',
+      '[data-btn-ar]', '[data-btn-en]',
+      '[data-email-title-ar]', '[data-email-title-en]',
+      '[data-location-title-ar]', '[data-location-title-en]',
+      '[data-location-ar]', '[data-location-en]'
+    ];
+    
+    selectors.forEach(selector => {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      
+      const isArabic = selector.includes('-ar]');
+      if (lang === 'ar' && isArabic) {
+        el.classList.remove('hidden');
+      } else if (lang === 'en' && !isArabic) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+    
+    // Update placeholders
+    const nameInput = document.getElementById('name') as HTMLInputElement;
+    const emailInput = document.getElementById('email') as HTMLInputElement;
+    const subjectInput = document.getElementById('subject') as HTMLInputElement;
+    const messageInput = document.getElementById('message') as HTMLTextAreaElement;
+    
+    if (nameInput) nameInput.placeholder = nameInput.getAttribute(`data-placeholder-${lang}`) || '';
+    if (emailInput) emailInput.placeholder = emailInput.getAttribute(`data-placeholder-${lang}`) || '';
+    if (subjectInput) subjectInput.placeholder = subjectInput.getAttribute(`data-placeholder-${lang}`) || '';
+    if (messageInput) messageInput.placeholder = messageInput.getAttribute(`data-placeholder-${lang}`) || '';
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateContactLanguage(currentLang);
+    
+    // Form submission handler
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const formMessage = document.getElementById('form-message');
+    
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const lang = document.documentElement.getAttribute('lang') || 'ar';
+      const successMessage = lang === 'ar' 
+        ? 'تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.'
+        : 'Your message has been sent successfully! We will contact you soon.';
+      
+      if (formMessage) {
+        formMessage.textContent = successMessage;
+        formMessage.className = 'mt-4 p-4 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 rounded-lg';
+        formMessage.classList.remove('hidden');
+      }
+      
+      form.reset();
+      
+      setTimeout(() => {
+        formMessage?.classList.add('hidden');
+      }, 5000);
+    });
+  });
+  
+  const observer = new MutationObserver(() => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateContactLanguage(currentLang);
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
+</script>
