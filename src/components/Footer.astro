@@ -1,0 +1,45 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-gray-100 dark:bg-gray-800 mt-20">
+  <div class="container mx-auto px-4 py-8">
+    <div class="text-center text-gray-600 dark:text-gray-400">
+      <p class="mb-2">
+        <span data-footer-text-ar>&copy; {year} RimbaPixel. جميع الحقوق محفوظة.</span>
+        <span data-footer-text-en class="hidden">&copy; {year} RimbaPixel. All rights reserved.</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function updateFooterLanguage(lang: string) {
+    const arText = document.querySelector('[data-footer-text-ar]');
+    const enText = document.querySelector('[data-footer-text-en]');
+    
+    if (lang === 'ar') {
+      arText?.classList.remove('hidden');
+      enText?.classList.add('hidden');
+    } else {
+      arText?.classList.add('hidden');
+      enText?.classList.remove('hidden');
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateFooterLanguage(currentLang);
+  });
+  
+  // Listen for language changes
+  const observer = new MutationObserver(() => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateFooterLanguage(currentLang);
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
+</script>

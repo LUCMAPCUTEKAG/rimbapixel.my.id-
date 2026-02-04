@@ -1,0 +1,158 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About - RimbaPixel" lang="ar">
+  <Navigation />
+  
+  <main class="pt-24">
+    <!-- Page Header -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-5xl font-bold mb-6 reveal">
+          <span data-title-ar>عن RimbaPixel</span>
+          <span data-title-en class="hidden">About RimbaPixel</span>
+        </h1>
+      </div>
+    </section>
+    
+    <!-- About Content -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="max-w-4xl mx-auto">
+        <div class="reveal card-3d bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            <span data-subtitle-ar>من نحن</span>
+            <span data-subtitle-en class="hidden">Who We Are</span>
+          </h2>
+          <div class="prose dark:prose-invert max-w-none">
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-4" data-para1-ar>
+              نحن فريق من المصممين المبدعين المتخصصين في تقديم حلول تصميم جرافيكي وموشن جرافيك احترافية. 
+              نؤمن بأن التصميم الجيد هو الذي يجمع بين الجمال والوظيفية، ونسعى دائماً لتقديم أعمال تتجاوز توقعات عملائنا.
+            </p>
+            <p class="text-lg text-gray-700 dark:text-gray-300 mb-4 hidden" data-para1-en>
+              We are a team of creative designers specialized in providing professional graphic design and motion graphics solutions. 
+              We believe that good design combines beauty and functionality, and we always strive to deliver work that exceeds our clients' expectations.
+            </p>
+          </div>
+        </div>
+        
+        <div class="reveal card-3d bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg mb-12">
+          <h2 class="text-3xl font-bold mb-6">
+            <span data-subtitle2-ar>خدماتنا</span>
+            <span data-subtitle2-en class="hidden">Our Services</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3">
+                <span data-service1-ar>تصميم جرافيكي</span>
+                <span data-service1-en class="hidden">Graphic Design</span>
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                <span data-service1desc-ar>هويات بصرية، شعارات، مطبوعات، تصميم UI/UX</span>
+                <span data-service1desc-en class="hidden">Brand identities, logos, print materials, UI/UX design</span>
+              </p>
+            </div>
+            <div class="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <h3 class="text-xl font-semibold mb-3">
+                <span data-service2-ar>موشن جرافيك</span>
+                <span data-service2-en class="hidden">Motion Graphics</span>
+              </h3>
+              <p class="text-gray-600 dark:text-gray-300">
+                <span data-service2desc-ar>فيديوهات ترويجية، تعليمية، مقدمات، انيميشن</span>
+                <span data-service2desc-en class="hidden">Promotional videos, educational content, intros, animation</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="reveal card-3d bg-white dark:bg-gray-800 rounded-lg p-8 shadow-lg">
+          <h2 class="text-3xl font-bold mb-6">
+            <span data-subtitle3-ar>لماذا نحن؟</span>
+            <span data-subtitle3-en class="hidden">Why Choose Us?</span>
+          </h2>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mt-1 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-gray-700 dark:text-gray-300">
+                <span data-why1-ar>خبرة واسعة في مجال التصميم الجرافيكي والموشن جرافيك</span>
+                <span data-why1-en class="hidden">Extensive experience in graphic design and motion graphics</span>
+              </span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mt-1 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-gray-700 dark:text-gray-300">
+                <span data-why2-ar>تسليم في الوقت المحدد والتزام بالجودة العالية</span>
+                <span data-why2-en class="hidden">On-time delivery and commitment to high quality</span>
+              </span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-6 h-6 text-blue-600 mt-1 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span class="text-gray-700 dark:text-gray-300">
+                <span data-why3-ar>أسعار تنافسية ودعم مستمر</span>
+                <span data-why3-en class="hidden">Competitive pricing and continuous support</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  function updateAboutLanguage(lang: string) {
+    const selectors = [
+      '[data-title-ar]', '[data-title-en]',
+      '[data-subtitle-ar]', '[data-subtitle-en]',
+      '[data-para1-ar]', '[data-para1-en]',
+      '[data-subtitle2-ar]', '[data-subtitle2-en]',
+      '[data-service1-ar]', '[data-service1-en]',
+      '[data-service1desc-ar]', '[data-service1desc-en]',
+      '[data-service2-ar]', '[data-service2-en]',
+      '[data-service2desc-ar]', '[data-service2desc-en]',
+      '[data-subtitle3-ar]', '[data-subtitle3-en]',
+      '[data-why1-ar]', '[data-why1-en]',
+      '[data-why2-ar]', '[data-why2-en]',
+      '[data-why3-ar]', '[data-why3-en]'
+    ];
+    
+    selectors.forEach(selector => {
+      const el = document.querySelector(selector);
+      if (!el) return;
+      
+      const isArabic = selector.includes('-ar]');
+      if (lang === 'ar' && isArabic) {
+        el.classList.remove('hidden');
+      } else if (lang === 'en' && !isArabic) {
+        el.classList.remove('hidden');
+      } else {
+        el.classList.add('hidden');
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateAboutLanguage(currentLang);
+  });
+  
+  const observer = new MutationObserver(() => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateAboutLanguage(currentLang);
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
+</script>

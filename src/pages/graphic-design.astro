@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+
+// Sample projects data (will be replaced by CMS)
+const projects = [
+  {
+    title: 'تصميم هوية بصرية',
+    titleEn: 'Brand Identity Design',
+    description: 'تصميم هوية بصرية متكاملة لشركة تقنية ناشئة',
+    descriptionEn: 'Complete brand identity design for a tech startup',
+    image: '/uploads/project1.jpg',
+    link: '#',
+    category: 'هوية بصرية'
+  },
+  {
+    title: 'تصميم ملصق إعلاني',
+    titleEn: 'Advertising Poster',
+    description: 'ملصق إعلاني إبداعي لحملة تسويقية',
+    descriptionEn: 'Creative advertising poster for marketing campaign',
+    image: '/uploads/project2.jpg',
+    link: '#',
+    category: 'إعلانات'
+  },
+  {
+    title: 'تصميم واجهة مستخدم',
+    titleEn: 'UI Design',
+    description: 'تصميم واجهة مستخدم حديثة لتطبيق موبايل',
+    descriptionEn: 'Modern UI design for mobile application',
+    image: '/uploads/project3.jpg',
+    link: '#',
+    category: 'UI/UX'
+  },
+  {
+    title: 'تصميم شعار',
+    titleEn: 'Logo Design',
+    description: 'شعار عصري وفريد لعلامة تجارية جديدة',
+    descriptionEn: 'Modern and unique logo for a new brand',
+    image: '/uploads/project4.jpg',
+    link: '#',
+    category: 'شعارات'
+  },
+  {
+    title: 'تصميم تغليف منتج',
+    titleEn: 'Product Packaging',
+    description: 'تصميم تغليف جذاب لمنتج غذائي',
+    descriptionEn: 'Attractive packaging design for food product',
+    image: '/uploads/project5.jpg',
+    link: '#',
+    category: 'تغليف'
+  },
+  {
+    title: 'تصميم بروشور',
+    titleEn: 'Brochure Design',
+    description: 'بروشور تعريفي احترافي لشركة',
+    descriptionEn: 'Professional company brochure design',
+    image: '/uploads/project6.jpg',
+    link: '#',
+    category: 'مطبوعات'
+  }
+];
+---
+
+<Layout title="Graphic Design - RimbaPixel" lang="ar">
+  <Navigation />
+  
+  <main class="pt-24">
+    <!-- Page Header -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-5xl font-bold mb-6 reveal">
+          <span data-title-ar>تصميم جرافيكي</span>
+          <span data-title-en class="hidden">Graphic Design</span>
+        </h1>
+        <p class="text-xl text-gray-600 dark:text-gray-300 reveal">
+          <span data-desc-ar>مجموعة من أعمالنا في مجال التصميم الجرافيكي من هويات بصرية وشعارات وتصاميم مطبوعات</span>
+          <span data-desc-en class="hidden">Collection of our graphic design work including brand identities, logos, and print designs</span>
+        </p>
+      </div>
+    </section>
+    
+    <!-- Projects Grid -->
+    <section class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <ProjectCard {...project} />
+        ))}
+      </div>
+    </section>
+  </main>
+  
+  <Footer />
+</Layout>
+
+<script>
+  function updateGraphicDesignLanguage(lang: string) {
+    const elements = [
+      { ar: '[data-title-ar]', en: '[data-title-en]' },
+      { ar: '[data-desc-ar]', en: '[data-desc-en]' }
+    ];
+    
+    elements.forEach(({ ar, en }) => {
+      const arEl = document.querySelector(ar);
+      const enEl = document.querySelector(en);
+      
+      if (lang === 'ar') {
+        arEl?.classList.remove('hidden');
+        enEl?.classList.add('hidden');
+      } else {
+        arEl?.classList.add('hidden');
+        enEl?.classList.remove('hidden');
+      }
+    });
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateGraphicDesignLanguage(currentLang);
+  });
+  
+  const observer = new MutationObserver(() => {
+    const currentLang = document.documentElement.getAttribute('lang') || 'ar';
+    updateGraphicDesignLanguage(currentLang);
+  });
+  
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['lang']
+  });
+</script>

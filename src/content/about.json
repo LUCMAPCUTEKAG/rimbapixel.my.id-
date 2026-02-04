@@ -1,0 +1,40 @@
+{
+  "ar": {
+    "title": "عن RimbaPixel",
+    "whoWeAre": "نحن فريق من المصممين المبدعين المتخصصين في تقديم حلول تصميم جرافيكي وموشن جرافيك احترافية. نؤمن بأن التصميم الجيد هو الذي يجمع بين الجمال والوظيفية، ونسعى دائماً لتقديم أعمال تتجاوز توقعات عملائنا.",
+    "services": [
+      {
+        "name": "تصميم جرافيكي",
+        "description": "هويات بصرية، شعارات، مطبوعات، تصميم UI/UX"
+      },
+      {
+        "name": "موشن جرافيك",
+        "description": "فيديوهات ترويجية، تعليمية، مقدمات، انيميشن"
+      }
+    ],
+    "whyChooseUs": [
+      { "reason": "خبرة واسعة في مجال التصميم الجرافيكي والموشن جرافيك" },
+      { "reason": "تسليم في الوقت المحدد والتزام بالجودة العالية" },
+      { "reason": "أسعار تنافسية ودعم مستمر" }
+    ]
+  },
+  "en": {
+    "title": "About RimbaPixel",
+    "whoWeAre": "We are a team of creative designers specialized in providing professional graphic design and motion graphics solutions. We believe that good design combines beauty and functionality, and we always strive to deliver work that exceeds our clients' expectations.",
+    "services": [
+      {
+        "name": "Graphic Design",
+        "description": "Brand identities, logos, print materials, UI/UX design"
+      },
+      {
+        "name": "Motion Graphics",
+        "description": "Promotional videos, educational content, intros, animation"
+      }
+    ],
+    "whyChooseUs": [
+      { "reason": "Extensive experience in graphic design and motion graphics" },
+      { "reason": "On-time delivery and commitment to high quality" },
+      { "reason": "Competitive pricing and continuous support" }
+    ]
+  }
+}

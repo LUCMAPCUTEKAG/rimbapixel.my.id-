@@ -1,0 +1,64 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: 'ar' | 'en';
+}
+
+const { 
+  title = 'RimbaPixel Portfolio', 
+  description = 'Portfolio of graphic design and motion graphics',
+  lang = 'ar' 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline>
+      // Theme initialization
+      const theme = localStorage.getItem('theme') || 'light';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      }
+      
+      // Language initialization
+      const lang = localStorage.getItem('lang') || 'ar';
+      document.documentElement.setAttribute('lang', lang);
+      document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+    </script>
+  </head>
+  <body class="font-sans antialiased">
+    <slot />
+    
+    <script>
+      // Scroll reveal functionality
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all elements with reveal class
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      
+      // Page transition support
+      document.addEventListener('astro:page-load', () => {
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
