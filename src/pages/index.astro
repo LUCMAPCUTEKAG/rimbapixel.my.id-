@@ -1,0 +1,233 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { useTranslations } from '../lib/i18n';
+import type { Project, Motion } from '../lib/types';
+
+const lang = 'ar';
+const t = useTranslations(lang);
+
+// Load content
+const projectFiles = await Astro.glob('../content/projects/*.json');
+const motionFiles = await Astro.glob('../content/motion/*.json');
+
+const projects: Project[] = projectFiles.map(p => p.default as Project);
+const motions: Motion[] = motionFiles.map(m => m.default as Motion);
+
+const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
+const featuredMotions = motions.filter(m => m.featured).slice(0, 2);
+const featuredWorks = [...featuredProjects, ...featuredMotions].slice(0, 5);
+---
+
+<MainLayout title="داني ديزاين - تصميم جرافيكي وموشن غرافيك" lang={lang}>
+  <!-- Hero Section with 3D -->
+  <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary-50 via-white to-primary-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+    <!-- 3D Background Canvas -->
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full"></canvas>
+    
+    <!-- Hero Content -->
+    <div class="relative z-10 container-custom text-center" data-reveal>
+      <h1 class="text-6xl md:text-8xl font-bold mb-6 animate-fade-in">
+        <span class="gradient-text">داني ديزاين</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+        تصميم جرافيكي وموشن غرافيك احترافي
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="#featured" class="btn-primary">
+          استكشف الأعمال
+          <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </a>
+        <a href="/contact" class="btn-secondary">
+          تواصل معي
+        </a>
+      </div>
+    </div>
+    
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+  
+  <!-- Featured Works Section -->
+  <section id="featured" class="py-20 bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <h2 class="section-title" data-reveal>
+        <span class="gradient-text">أعمال مميزة</span>
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {featuredWorks.map((work, index) => {
+          const isMotion = 'videoUrl' in work;
+          const title = work.title_ar;
+          const image = isMotion ? (work as Motion).posterImage : (work as Project).coverImage;
+          const href = isMotion ? `/motion-graphics/${work.slug}` : `/graphic-design/${work.slug}`;
+          
+          return (
+            <a
+              href={href}
+              class="card card-hover group"
+              data-reveal
+              style={`animation-delay: ${index * 0.1}s`}
+            >
+              <div class="relative overflow-hidden aspect-[4/3]">
+                <div class="w-full h-full bg-gradient-to-br from-primary-200 to-primary-400 dark:from-primary-900 dark:to-primary-700"></div>
+                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                  <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    {isMotion ? (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    ) : (
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    )}
+                  </svg>
+                </div>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  {title}
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  {work.year} • {isMotion ? 'موشن غرافيك' : 'غرافيك ديزاين'}
+                </p>
+              </div>
+            </a>
+          );
+        })}
+      </div>
+      
+      <div class="text-center mt-12" data-reveal>
+        <a href="/graphic-design" class="btn-primary">
+          عرض جميع الأعمال
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Services Overview -->
+  <section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="container-custom">
+      <h2 class="section-title" data-reveal>
+        <span class="gradient-text">الخدمات</span>
+      </h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="card p-8 text-center" data-reveal>
+          <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">غرافيك ديزاين</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            تصميم هويات بصرية، شعارات، مواد تسويقية، وتصاميم رقمية ومطبوعة احترافية
+          </p>
+          <a href="/graphic-design" class="text-primary-600 dark:text-primary-400 font-medium hover:underline">
+            استكشف المشاريع ←
+          </a>
+        </div>
+        
+        <div class="card p-8 text-center" data-reveal style="animation-delay: 0.1s">
+          <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold mb-4">موشن غرافيك</h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            رسوم متحركة احترافية، فيديوهات ترويجية، وأنيميشن ثنائي وثلاثي الأبعاد
+          </p>
+          <a href="/motion-graphics" class="text-primary-600 dark:text-primary-400 font-medium hover:underline">
+            شاهد الأعمال ←
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- About Teaser -->
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container-custom">
+      <div class="max-w-3xl mx-auto text-center" data-reveal>
+        <h2 class="text-4xl font-bold mb-6">
+          <span class="gradient-text">داني البيطار</span>
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+          مصمم جرافيك وموشن غرافيك محترف من سوريا مع أكثر من 3 سنوات خبرة في تقديم حلول تصميم إبداعية ومبتكرة
+        </p>
+        <a href="/about" class="btn-primary">
+          اعرف المزيد عني
+        </a>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact CTA -->
+  <section class="py-20 bg-gradient-to-br from-primary-600 to-primary-800 text-white">
+    <div class="container-custom text-center" data-reveal>
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">
+        هل لديك مشروع في ذهنك؟
+      </h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">
+        دعنا نعمل معاً لتحويل أفكارك إلى تصاميم مذهلة
+      </p>
+      <a href="/contact" class="inline-block px-8 py-4 bg-white text-primary-600 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all hover:-translate-y-1 hover:shadow-2xl">
+        تواصل معي الآن
+      </a>
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  // Simple 3D canvas animation
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Animated gradient mesh
+    let time = 0;
+    function animate() {
+      if (!ctx) return;
+      
+      time += 0.005;
+      
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2 + Math.sin(time) * 100,
+        canvas.height / 2 + Math.cos(time) * 100,
+        0,
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.width / 2
+      );
+      
+      gradient.addColorStop(0, 'rgba(14, 165, 233, 0.1)');
+      gradient.addColorStop(0.5, 'rgba(14, 165, 233, 0.05)');
+      gradient.addColorStop(1, 'rgba(14, 165, 233, 0)');
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+    
+    // Mouse parallax effect
+    canvas.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / canvas.width - 0.5) * 20;
+      const y = (e.clientY / canvas.height - 0.5) * 20;
+      canvas.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  }
+</script>

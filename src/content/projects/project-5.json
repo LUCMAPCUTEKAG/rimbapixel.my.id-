@@ -1,0 +1,17 @@
+{
+  "slug": "restaurant-menu",
+  "title_ar": "تصميم منيو مطعم",
+  "title_en": "Restaurant Menu Design",
+  "desc_ar": "تصميم منيو مطعم فاخر مع صور احترافية وتخطيط أنيق",
+  "desc_en": "Luxury restaurant menu design with professional photos and elegant layout",
+  "year": 2023,
+  "tags": ["Menu Design", "Food", "Print"],
+  "category": "Print",
+  "coverImage": "/uploads/projects/menu-cover.jpg",
+  "galleryImages": [
+    "/uploads/projects/menu-1.jpg",
+    "/uploads/projects/menu-2.jpg",
+    "/uploads/projects/menu-3.jpg"
+  ],
+  "featured": true
+}

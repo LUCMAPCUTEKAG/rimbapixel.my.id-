@@ -1,0 +1,17 @@
+{
+  "slug": "packaging-design",
+  "title_ar": "تصميم عبوات منتج",
+  "title_en": "Product Packaging Design",
+  "desc_ar": "تصميم عبوات مبتكرة وجذابة لمنتجات غذائية عضوية",
+  "desc_en": "Innovative and attractive packaging design for organic food products",
+  "year": 2024,
+  "tags": ["Packaging", "Product Design", "Print"],
+  "category": "Packaging",
+  "coverImage": "/uploads/projects/packaging-cover.jpg",
+  "galleryImages": [
+    "/uploads/projects/packaging-1.jpg",
+    "/uploads/projects/packaging-2.jpg",
+    "/uploads/projects/packaging-3.jpg"
+  ],
+  "featured": false
+}

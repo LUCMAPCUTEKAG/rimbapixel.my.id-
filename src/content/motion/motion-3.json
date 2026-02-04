@@ -1,0 +1,12 @@
+{
+  "slug": "explainer-video",
+  "title_ar": "فيديو توضيحي متحرك",
+  "title_en": "Animated Explainer Video",
+  "desc_ar": "فيديو توضيحي متحرك يشرح خدمة بطريقة بسيطة وجذابة",
+  "desc_en": "Animated explainer video that explains a service in a simple and engaging way",
+  "year": 2024,
+  "tags": ["Explainer", "2D Animation", "Educational"],
+  "posterImage": "/uploads/motion/explainer-poster.jpg",
+  "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+  "featured": false
+}

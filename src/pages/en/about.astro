@@ -1,0 +1,128 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { useTranslations } from '../../lib/i18n';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const aboutFile = await import('../../content/about/info.json');
+const about = aboutFile.default;
+---
+
+<MainLayout title="About Me - Dani Design" lang={lang}>
+  <section class="relative py-32 bg-gradient-to-br from-primary-50 via-white to-primary-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <div class="container-custom relative z-10">
+      <div class="max-w-4xl mx-auto text-center" data-reveal>
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+          <span class="gradient-text">{t('about.name')}</span>
+        </h1>
+        <p class="text-2xl text-gray-700 dark:text-gray-300 mb-4">
+          Graphic Designer & Motion Graphics Artist
+        </p>
+        <div class="flex flex-wrap justify-center gap-6 text-lg">
+          <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>{t('about.experience')}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>{t('about.location')}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-20 w-64 h-64 bg-primary-500 rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-20 right-20 w-96 h-96 bg-primary-400 rounded-full blur-3xl animate-float" style="animation-delay: 2s"></div>
+    </div>
+  </section>
+  
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-4xl">
+      <div class="space-y-16">
+        <div class="glass p-8 md:p-12 rounded-2xl" data-reveal>
+          <h2 class="text-3xl font-bold mb-6 gradient-text">My Story</h2>
+          <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed">
+            {about.about_en.split('\n\n').map((paragraph: string) => (
+              <p class="mb-4">{paragraph}</p>
+            ))}
+          </div>
+        </div>
+        
+        <div>
+          <h2 class="text-3xl font-bold mb-8 text-center gradient-text" data-reveal>
+            Highlights
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {about.highlights_en.map((highlight: string, index: number) => (
+              <div
+                class="card p-6 hover:scale-105 transition-transform"
+                data-reveal
+                style={`animation-delay: ${index * 0.1}s; transform-style: preserve-3d;`}
+              >
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center">
+                    <svg class="w-6 h-6 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p class="text-lg">{highlight}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {about.skills && about.skills.length > 0 && (
+          <div data-reveal>
+            <h2 class="text-3xl font-bold mb-8 text-center gradient-text">
+              Tools & Technologies
+            </h2>
+            <div class="flex flex-wrap justify-center gap-4">
+              {about.skills.map((skill: string) => (
+                <div class="px-6 py-3 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900 dark:to-primary-800 rounded-full font-medium hover:shadow-lg transition-all hover:-translate-y-1">
+                  {skill}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        
+        <div class="text-center glass p-12 rounded-2xl" data-reveal>
+          <h2 class="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
+          <p class="text-lg text-gray-600 dark:text-gray-400 mb-8">
+            Let's work together to bring your creative vision to life
+          </p>
+          <a href="/en/contact" class="btn-primary">
+            Get In Touch Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .glass {
+    position: relative;
+  }
+  
+  .glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(14, 165, 233, 0.3), rgba(14, 165, 233, 0.1));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+</style>

@@ -1,0 +1,118 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { useTranslations } from '../../../lib/i18n';
+import type { Project } from '../../../lib/types';
+
+export async function getStaticPaths() {
+  const projectFiles = await import.meta.glob('../../../content/projects/*.json');
+  const paths = [];
+  
+  for (const path in projectFiles) {
+    const project = (await projectFiles[path]()) as any;
+    paths.push({
+      params: { slug: project.default.slug },
+      props: { project: project.default as Project },
+    });
+  }
+  
+  return paths;
+}
+
+const { project } = Astro.props;
+const lang = 'en';
+const t = useTranslations(lang);
+---
+
+<MainLayout title={`${project.title_en} - Dani Design`} lang={lang}>
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-5xl">
+      <a
+        href="/en/graphic-design"
+        class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:underline mb-8"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        {t('back')}
+      </a>
+      
+      <div class="mb-12" data-reveal>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{project.title_en}</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">{project.desc_en}</p>
+        
+        <div class="flex flex-wrap gap-6 text-sm">
+          <div>
+            <span class="font-bold">{t('year')}:</span>
+            <span class="ml-2">{project.year}</span>
+          </div>
+          {project.category && (
+            <div>
+              <span class="font-bold">Category:</span>
+              <span class="ml-2">{project.category}</span>
+            </div>
+          )}
+        </div>
+        
+        <div class="flex flex-wrap gap-2 mt-4">
+          {project.tags.map(tag => (
+            <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+      
+      <div class="mb-8" data-reveal>
+        <div class="aspect-video rounded-xl overflow-hidden shadow-2xl bg-gradient-to-br from-primary-200 to-primary-400 dark:from-primary-900 dark:to-primary-700"></div>
+      </div>
+      
+      {project.galleryImages && project.galleryImages.length > 0 && (
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold mb-6" data-reveal>{t('gallery')}</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {project.galleryImages.map((image, index) => (
+              <div
+                class="aspect-[4/3] rounded-lg overflow-hidden shadow-lg bg-gradient-to-br from-gray-200 to-gray-400 dark:from-gray-700 dark:to-gray-900"
+                data-reveal
+                style={`animation-delay: ${index * 0.1}s`}
+              >
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      {project.videos && project.videos.length > 0 && (
+        <div class="mb-12">
+          <h2 class="text-2xl font-bold mb-6" data-reveal>{t('video')}</h2>
+          <div class="space-y-6">
+            {project.videos.map((video, index) => (
+              <div
+                class="aspect-video rounded-xl overflow-hidden shadow-2xl bg-gray-900"
+                data-reveal
+                style={`animation-delay: ${index * 0.1}s`}
+              >
+                <div class="w-full h-full flex items-center justify-center text-white">
+                  <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      
+      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800" data-reveal>
+        <div class="flex justify-between items-center">
+          <a href="/en/graphic-design" class="btn-secondary">
+            View All Projects
+          </a>
+          <a href="/en/contact" class="btn-primary">
+            Have a Similar Project?
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

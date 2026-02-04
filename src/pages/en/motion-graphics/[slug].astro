@@ -1,0 +1,109 @@
+---
+import MainLayout from '../../../layouts/MainLayout.astro';
+import { useTranslations } from '../../../lib/i18n';
+import type { Motion } from '../../../lib/types';
+
+export async function getStaticPaths() {
+  const motionFiles = await import.meta.glob('../../../content/motion/*.json');
+  const paths = [];
+  
+  for (const path in motionFiles) {
+    const motion = (await motionFiles[path]()) as any;
+    paths.push({
+      params: { slug: motion.default.slug },
+      props: { motion: motion.default as Motion },
+    });
+  }
+  
+  return paths;
+}
+
+const { motion } = Astro.props;
+const lang = 'en';
+const t = useTranslations(lang);
+
+function getYouTubeId(url: string) {
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const match = url.match(regExp);
+  return (match && match[2].length === 11) ? match[2] : null;
+}
+
+const videoId = getYouTubeId(motion.videoUrl);
+---
+
+<MainLayout title={`${motion.title_en} - Dani Design`} lang={lang}>
+  <section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container-custom max-w-5xl">
+      <a
+        href="/en/motion-graphics"
+        class="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:underline mb-8"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        {t('back')}
+      </a>
+      
+      <div class="mb-12" data-reveal>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">{motion.title_en}</h1>
+        <p class="text-xl text-gray-600 dark:text-gray-400 mb-6">{motion.desc_en}</p>
+        
+        <div class="flex flex-wrap gap-6 text-sm mb-4">
+          <div>
+            <span class="font-bold">{t('year')}:</span>
+            <span class="ml-2">{motion.year}</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-2">
+          {motion.tags.map(tag => (
+            <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+      
+      <div class="mb-12" data-reveal>
+        {videoId ? (
+          <div class="aspect-video rounded-xl overflow-hidden shadow-2xl">
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title={motion.title_en}
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+              class="w-full h-full"
+            ></iframe>
+          </div>
+        ) : (
+          <div class="aspect-video rounded-xl overflow-hidden shadow-2xl bg-gray-900 flex items-center justify-center">
+            <div class="text-center text-white">
+              <svg class="w-20 h-20 mx-auto mb-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+              <p class="text-lg">Video not available</p>
+            </div>
+          </div>
+        )}
+      </div>
+      
+      <div class="prose dark:prose-invert max-w-none mb-12" data-reveal>
+        <p class="text-lg">{motion.desc_en}</p>
+      </div>
+      
+      <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800" data-reveal>
+        <div class="flex justify-between items-center">
+          <a href="/en/motion-graphics" class="btn-secondary">
+            View All Works
+          </a>
+          <a href="/en/contact" class="btn-primary">
+            Have a Similar Project?
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>
