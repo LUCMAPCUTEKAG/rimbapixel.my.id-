@@ -1,0 +1,59 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { useTranslations } from '../../lib/i18n';
+import type { Motion } from '../../lib/types';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const motionFiles = await Astro.glob('../../content/motion/*.json');
+const motions: Motion[] = motionFiles.map(m => m.default as Motion);
+---
+
+<MainLayout title="Motion Graphics - Dani Design" lang={lang}>
+  <section class="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="container-custom">
+      <h1 class="section-title mb-4" data-reveal>
+        <span class="gradient-text">Motion Graphics</span>
+      </h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12" data-reveal>
+        A collection of my motion graphics and animation work
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {motions.map((motion, index) => (
+          <a
+            href={`/en/motion-graphics/${motion.slug}`}
+            class="card card-hover group"
+            data-reveal
+            style={`animation-delay: ${index * 0.05}s`}
+          >
+            <div class="relative overflow-hidden aspect-video">
+              <div class="w-full h-full bg-gradient-to-br from-primary-200 to-primary-400 dark:from-primary-900 dark:to-primary-700"></div>
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                <svg class="w-16 h-16 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {motion.title_en}
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                {motion.year}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {motion.tags.slice(0, 3).map(tag => (
+                  <span class="px-2 py-1 text-xs bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>

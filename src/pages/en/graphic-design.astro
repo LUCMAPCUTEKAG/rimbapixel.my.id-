@@ -1,0 +1,59 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import { useTranslations } from '../../lib/i18n';
+import type { Project } from '../../lib/types';
+
+const lang = 'en';
+const t = useTranslations(lang);
+
+const projectFiles = await Astro.glob('../../content/projects/*.json');
+const projects: Project[] = projectFiles.map(p => p.default as Project);
+---
+
+<MainLayout title="Graphic Design - Dani Design" lang={lang}>
+  <section class="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+    <div class="container-custom">
+      <h1 class="section-title mb-4" data-reveal>
+        <span class="gradient-text">Graphic Design</span>
+      </h1>
+      <p class="text-center text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12" data-reveal>
+        A collection of my graphic design work including brand identities, digital and print designs
+      </p>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project, index) => (
+          <a
+            href={`/en/graphic-design/${project.slug}`}
+            class="card card-hover group"
+            data-reveal
+            style={`animation-delay: ${index * 0.05}s`}
+          >
+            <div class="relative overflow-hidden aspect-[4/3]">
+              <div class="w-full h-full bg-gradient-to-br from-primary-200 to-primary-400 dark:from-primary-900 dark:to-primary-700"></div>
+              <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <svg class="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {project.title_en}
+              </h3>
+              <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">
+                {project.year}
+              </p>
+              <div class="flex flex-wrap gap-2">
+                {project.tags.slice(0, 3).map(tag => (
+                  <span class="px-2 py-1 text-xs bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</MainLayout>
